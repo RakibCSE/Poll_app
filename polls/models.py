@@ -4,6 +4,7 @@ from django.db import models
 from django.utils.encoding import python_2_unicode_compatible
 from django.utils import timezone
 
+
 @python_2_unicode_compatible            # if you need to support python 2
 class Question(models.Model):
     question_text = models.CharField(max_length=200)
@@ -20,6 +21,7 @@ class Question(models.Model):
     was_published_recently.boolean = True
     was_published_recently.short_description = 'Published recently?'
 
+
 @python_2_unicode_compatible            # if you need to support python 2
 class Choice(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
@@ -28,4 +30,11 @@ class Choice(models.Model):
 
     def __str__(self):
         return self.choice_text
-        
+
+
+class VoterDetail(models.Model):
+    voter_id = models.CharField(max_length=20)
+    voted = models.BooleanField(default=False)
+
+    def __str__(self):
+        return self.voter_id
