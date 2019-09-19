@@ -1,0 +1,15 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h4>{{ question.question_text }}</h4>
+
+    <table class="striped">
+        {% for choice in question.choice_set.all %}
+            <tr>
+                <td>{{ choice.choice_text }}</td>
+                <td>{{ choice.votes }} vote{{ choice.votes|pluralize }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <a href="{% url 'polls_app:detail' question.id %}">Vote again?</a>
+{% endblock %}

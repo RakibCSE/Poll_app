@@ -1,0 +1,26 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+    <h5>{{ question.question_text }}</h5>
+
+    {% if error_message %} <p class="red-text"><strong> {{ error_message }}</strong></p>{% endif %}
+
+    <form action="{% url 'polls_app:vote' question.id %}" method="post">
+        {% csrf_token %}
+        {% for choice in question.choice_set.all %}
+            <p>
+                <label>
+                    <input type="radio" id="choice{{ forloop.counter }}" name="choice" value="{{ choice.id }}"/>
+                    <span>{{ choice.choice_text }}</span>
+                </label>
+            </p>
+        {% endfor %}
+        <br>
+        <input class="btn white black-text z-depth-1-half" type="submit" value="Vote"/>
+    </form>
+
+    <br>
+    <div class="card-action">
+        <a class="deep-purple-text" href="{% url "polls_app:index" %}">GOTO QUESTIONS PAGE</a>
+    </div>
+{% endblock %}
