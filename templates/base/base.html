@@ -1,0 +1,37 @@
+{% load staticfiles %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %} Polls {% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/materialize.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<div class="container">
+    <div class="row">
+        <div class="col l12 m9 s12">
+            <div class="row">
+                <div class="card blue lighten-5">
+                    <div class="card-content center-block">
+                        <span class="card-title center">Voting System</span>
+                        <p class="left">
+                            {% block content %}
+
+                            {% endblock %}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'js/jquery-3.1.1.min.js' %}"></script>
+<script src="{% static 'js/materialize.min.js' %}"></script>
+</body>
+</html>
